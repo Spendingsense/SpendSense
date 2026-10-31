@@ -1,561 +1,118 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>SpendSense | Income Management</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px;
-            color: #263238;
-        }
-
-        header {
-            background-color: #17566b;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px;
-        }
-
-        main {
-            max-width: 900px;
-            margin: 25px auto;
-        }
-
-        .income-summary,
-        .income-form,
-        .income-records {
-            background-color: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .income-summary {
-            text-align: center;
-            border-left: 5px solid #176b52;
-        }
-
-        .income-summary h2 {
-            color: #176b52;
-        }
-
-        form {
-            display: grid;
-            gap: 12px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input,
-        select,
-        textarea,
-        button {
-            width: 100%;
-            padding: 11px;
-            font-size: 15px;
-            border-radius: 5px;
-        }
-
-        input,
-        select,
-        textarea {
-            border: 1px solid #ccc;
-        }
-
-        button {
-            border: none;
-            background-color: #176b52;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #10523e;
-        }
-
-        .cancel-button {
-            background-color: #777;
-        }
-
-        .delete-button {
-            background-color: #c0392b;
-            margin-top: 5px;
-        }
-
-        .edit-button {
-            background-color: #356ac3;
-        }
-
-        .table-container {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        th,
-        td {
-            border-bottom: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #e6f2ed;
-        }
-
-        .message {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        .empty-message {
-            text-align: center;
-            color: #777;
-        }
-
-        .form-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #666;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-
-            th,
-            td {
-                padding: 8px;
-            }
-        }
-    </style>
+    <title>SpendSense - Income Management</title>
 </head>
-
 <body>
 
     <header>
         <h1>SpendSense</h1>
-        <p>Income Management</p>
-        <p>Keep track of the money you receive.</p>
+        <h2>Income Management</h2>
+        <p>Record and manage your income sources.</p>
     </header>
 
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="income.html">Income Management</a>
+    </nav>
+
+    <hr>
+
     <main>
+        <section>
+            <h2>Add Income</h2>
 
-        <section class="income-summary">
-            <h2>Total Income</h2>
-            <p id="totalIncome">ETB 0.00</p>
-            <p>Based on your recorded income entries</p>
-        </section>
+            <form action="#" method="post">
 
-        <section class="income-form">
-            <h2 id="formTitle">Add New Income</h2>
+                <label for="source">Income Source:</label><br>
+                <select id="source" name="source" required>
+                    <option value="">Select income source</option>
+                    <option value="salary">Salary</option>
+                    <option value="business">Business</option>
+                    <option value="freelancing">Freelancing</option>
+                    <option value="allowance">Allowance</option>
+                    <option value="investment">Investment</option>
+                    <option value="other">Other</option>
+                </select>
 
-            <form id="incomeForm">
+                <br><br>
 
-                <div>
-                    <label for="source">Income Source</label>
-                    <select id="source" required>
-                        <option value="">Select income source</option>
-                        <option value="Salary">Salary</option>
-                        <option value="Business">Business</option>
-                        <option value="Freelancing">Freelancing</option>
-                        <option value="Allowance">Allowance</option>
-                        <option value="Investment">Investment</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
+                <label for="amount">Amount (ETB):</label><br>
+                <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    min="0.01"
+                    step="0.01"
+                    required
+                >
 
-                <div>
-                    <label for="amount">Amount (ETB)</label>
-                    <input
-                        type="number"
-                        id="amount"
-                        min="0.01"
-                        step="0.01"
-                        placeholder="Enter income amount"
-                        required
-                    >
-                </div>
+                <br><br>
 
-                <div>
-                    <label for="date">Date Received</label>
-                    <input type="date" id="date" required>
-                </div>
+                <label for="date">Date Received:</label><br>
+                <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    required
+                >
 
-                <div>
-                    <label for="description">Description</label>
-                    <textarea
-                        id="description"
-                        rows="3"
-                        maxlength="200"
-                        placeholder="Optional details about this income"
-                    ></textarea>
-                </div>
+                <br><br>
 
-                <div class="form-buttons">
-                    <button type="submit" id="submitButton">
-                        Add Income
-                    </button>
+                <label for="description">Description:</label><br>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="4"
+                    cols="30"
+                ></textarea>
 
-                    <button
-                        type="button"
-                        id="cancelButton"
-                        class="cancel-button"
-                        hidden
-                    >
-                        Cancel Edit
-                    </button>
-                </div>
+                <br><br>
 
-                <p id="formMessage" class="message" aria-live="polite"></p>
+                <button type="submit">Add Income</button>
+                <button type="reset">Clear Form</button>
 
             </form>
         </section>
 
-        <section class="income-records">
+        <hr>
+
+        <section>
             <h2>Income Records</h2>
 
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Source</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                            <th>Description</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Income Source</th>
+                        <th>Amount (ETB)</th>
+                        <th>Date Received</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
 
-                    <tbody id="incomeTable">
-                        <tr>
-                            <td colspan="5" class="empty-message">
-                                No income records yet.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                <tbody>
+                    <tr>
+                        <td colspan="4">No income records available.</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
 
+        <hr>
+
+        <section>
+            <h2>Total Income</h2>
+            <p>Total income: ETB 0.00</p>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 SpendSense | Income Management</p>
+        <p>&copy; 2026 SpendSense. All rights reserved.</p>
     </footer>
-
-    <script>
-        const incomeForm = document.getElementById("incomeForm");
-        const sourceInput = document.getElementById("source");
-        const amountInput = document.getElementById("amount");
-        const dateInput = document.getElementById("date");
-        const descriptionInput = document.getElementById("description");
-
-        const totalIncomeDisplay = document.getElementById("totalIncome");
-        const incomeTable = document.getElementById("incomeTable");
-        const formMessage = document.getElementById("formMessage");
-
-        const formTitle = document.getElementById("formTitle");
-        const submitButton = document.getElementById("submitButton");
-        const cancelButton = document.getElementById("cancelButton");
-
-        let incomes = [];
-
-        // Load previously saved income records.
-        try {
-            const savedIncomes = localStorage.getItem("spendSenseIncomes");
-
-            if (savedIncomes) {
-                const parsedIncomes = JSON.parse(savedIncomes);
-
-                if (Array.isArray(parsedIncomes)) {
-                    incomes = parsedIncomes.filter(income =>
-                        income &&
-                        typeof income.id === "string" &&
-                        typeof income.source === "string" &&
-                        typeof income.amount === "number" &&
-                        Number.isFinite(income.amount) &&
-                        income.amount > 0 &&
-                        typeof income.date === "string" &&
-                        typeof income.description === "string"
-                    );
-                }
-            }
-        } catch (error) {
-            console.error("Could not load income records:", error);
-        }
-
-        let editingId = null;
-
-        // Save income records in this browser.
-        function saveIncomes() {
-            try {
-                localStorage.setItem(
-                    "spendSenseIncomes",
-                    JSON.stringify(incomes)
-                );
-
-                return true;
-            } catch (error) {
-                formMessage.textContent =
-                    "Unable to save records in this browser.";
-
-                return false;
-            }
-        }
-
-        // Calculate the total income.
-        function calculateTotalIncome() {
-            return incomes.reduce(
-                (total, income) => total + income.amount,
-                0
-            );
-        }
-
-        // Display the total and all income records.
-        function displayIncomes() {
-            const total = calculateTotalIncome();
-
-            totalIncomeDisplay.textContent =
-                "ETB " + total.toLocaleString("en-US", {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                });
-
-            incomeTable.replaceChildren();
-
-            if (incomes.length === 0) {
-                const row = incomeTable.insertRow();
-                const cell = row.insertCell();
-
-                cell.colSpan = 5;
-                cell.className = "empty-message";
-                cell.textContent = "No income records yet.";
-
-                return;
-            }
-
-            incomes.forEach(income => {
-                const row = incomeTable.insertRow();
-
-                // Use textContent to display user input safely.
-                [
-                    income.source,
-                    "ETB " + income.amount.toFixed(2),
-                    income.date,
-                    income.description || "-"
-                ].forEach(value => {
-                    const cell = row.insertCell();
-                    cell.textContent = value;
-                });
-
-                const actionsCell = row.insertCell();
-
-                const editButton = document.createElement("button");
-                editButton.textContent = "Edit";
-                editButton.className = "edit-button";
-                editButton.type = "button";
-
-                editButton.addEventListener("click", () => {
-                    editIncome(income.id);
-                });
-
-                const deleteButton = document.createElement("button");
-                deleteButton.textContent = "Delete";
-                deleteButton.className = "delete-button";
-                deleteButton.type = "button";
-
-                deleteButton.addEventListener("click", () => {
-                    deleteIncome(income.id);
-                });
-
-                actionsCell.append(editButton, deleteButton);
-            });
-        }
-
-        // Add a new income record or update an existing one.
-        incomeForm.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const source = sourceInput.value;
-            const amount = Number(amountInput.value);
-            const date = dateInput.value;
-            const description = descriptionInput.value.trim();
-
-            if (!source || !date || !amountInput.value.trim()) {
-                formMessage.textContent =
-                    "Please complete all required fields.";
-
-                return;
-            }
-
-            if (!Number.isFinite(amount) || amount <= 0) {
-                formMessage.textContent =
-                    "Please enter an amount greater than zero.";
-
-                return;
-            }
-
-            if (date > new Date().toLocaleDateString("en-CA")) {
-                formMessage.textContent =
-                    "The income date cannot be in the future.";
-
-                return;
-            }
-
-            if (editingId !== null) {
-                const index = incomes.findIndex(
-                    income => income.id === editingId
-                );
-
-                if (index === -1) {
-                    formMessage.textContent =
-                        "Income record not found.";
-
-                    return;
-                }
-
-                const previousIncome = incomes[index];
-
-                incomes[index] = {
-                    ...previousIncome,
-                    source,
-                    amount,
-                    date,
-                    description
-                };
-            } else {
-                incomes.push({
-                    id: crypto.randomUUID(),
-                    source,
-                    amount,
-                    date,
-                    description
-                });
-            }
-
-            if (!saveIncomes()) {
-                // Restore the last successfully saved records.
-                try {
-                    incomes = JSON.parse(
-                        localStorage.getItem("spendSenseIncomes") || "[]"
-                    );
-                } catch (error) {
-                    incomes = [];
-                }
-
-                displayIncomes();
-                return;
-            }
-
-            formMessage.textContent =
-                editingId === null
-                    ? "Income added successfully!"
-                    : "Income updated successfully!";
-
-            resetForm();
-            displayIncomes();
-        });
-
-        // Load an existing record into the form for editing.
-        function editIncome(id) {
-            const income = incomes.find(item => item.id === id);
-
-            if (!income) {
-                return;
-            }
-
-            editingId = id;
-
-            sourceInput.value = income.source;
-            amountInput.value = income.amount;
-            dateInput.value = income.date;
-            descriptionInput.value = income.description;
-
-            formTitle.textContent = "Edit Income";
-            submitButton.textContent = "Save Changes";
-            cancelButton.hidden = false;
-            formMessage.textContent = "";
-
-            incomeForm.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        }
-
-        // Delete an income record.
-        function deleteIncome(id) {
-            const confirmed = confirm(
-                "Are you sure you want to delete this income record?"
-            );
-
-            if (!confirmed) {
-                return;
-            }
-
-            const previousIncomes = incomes;
-            incomes = incomes.filter(income => income.id !== id);
-
-            if (!saveIncomes()) {
-                incomes = previousIncomes;
-                displayIncomes();
-                return;
-            }
-
-            if (editingId === id) {
-                resetForm();
-            }
-
-            formMessage.textContent = "Income record deleted.";
-            displayIncomes();
-        }
-
-        // Reset the form after adding, editing, or cancelling.
-        function resetForm() {
-            incomeForm.reset();
-            editingId = null;
-
-            formTitle.textContent = "Add New Income";
-            submitButton.textContent = "Add Income";
-            cancelButton.hidden = true;
-        }
-
-        cancelButton.addEventListener("click", function() {
-            resetForm();
-            formMessage.textContent = "";
-        });
-
-        // Set today's date as the default.
-        dateInput.max = new Date().toLocaleDateString("en-CA");
-        dateInput.value = dateInput.max;
-
-        // Display saved records when the page opens.
-        displayIncomes();
-    </script>
 
 </body>
 </html>
+```
