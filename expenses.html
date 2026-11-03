@@ -22,6 +22,46 @@
     </header>
 
     <main>
+
+        <section>
+            <h3>Add New Expense</h3>
+
+            <form>
+                <div>
+                    <label for="description">Expense Description:</label>
+                    <input type="text" id="description" name="description" placeholder="Enter expense description">
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="amount">Amount (ETB):</label>
+                    <input type="number" id="amount" name="amount" placeholder="Enter amount">
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="category">Expense Category:</label>
+                    <select id="category" name="category">
+                        <option value="">Select Category</option>
+                    </select>
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="date">Expense Date:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+
+                <br>
+
+                <button type="submit">Add Expense</button>
+                <button type="reset">Clear Form</button>
+            </form>
+        </section>
+
         <h2>Expense Management</h2>
         <p>Track, organize, and manage your daily expenses.</p>
     </main>
