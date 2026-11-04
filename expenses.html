@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendSense - Expense Management</title>
+</head>
+
+<body>
+
+    <!-- Header and Navigation -->
+    <header>
+        <h1>SpendSense</h1>
+        <p>Smart Financial Management System</p>
+
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="income.html">Income</a> |
+            <a href="expenses.html">Expenses</a> |
+            <a href="budget.html">Budget</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <h2>Expense Management</h2>
+        <p>Track, organize, and manage your daily expenses.</p>
+        <section>
+            <h3>Expense Management Information</h3>
+
+            <h4>How to Record an Expense</h4>
+
+            <ol>
+                <li>Enter the expense description.</li>
+                <li>Enter the amount spent in ETB.</li>
+                <li>Select the appropriate expense category.</li>
+                <li>Choose the date of the expense.</li>
+                <li>Submit the form to record the expense.</li>
+            </ol>
+        </section>
+
+        <!-- Expense Entry Form -->
+        <section>
+            <h3>Add New Expense</h3>
+
+            <form>
+                <div>
+                    <label for="description">Expense Description:</label>
+                    <input type="text" id="description" name="description" placeholder="Enter expense description"
+                        required minlength="2">
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="amount">Amount (ETB):</label>
+                    <input type="number" id="amount" name="amount" placeholder="Enter amount" min="0.01" step="0.01"
+                        required>
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="category">Expense Category:</label>
+
+                    <select id="category" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="food">Food</option>
+                        <option value="transport">Transportation</option>
+                        <option value="education">Education materials</option>
+                        <option value="snacks and drinks">Snacks and Drinks</option>
+                        <option value="health">Healthcare</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="date">Expense Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+
+                <br>
+
+                <button type="submit">Add Expense</button>
+                <button type="reset">Clear Form</button>
+            </form>
+        </section>
+
+        <!-- Expense Records -->
+        <section>
+            <h3>Expense Records</h3>
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount (ETB)</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td colspan="6">
+                            No expenses recorded yet.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Expense Summary -->
+        <section>
+            <h3>Expense Summary</h3>
+
+            <div>
+                <h4>Total Expenses</h4>
+                <p>ETB 0.00</p>
+            </div>
+
+            <div>
+                <h4>Number of Expenses</h4>
+                <p>0</p>
+            </div>
+
+            <div>
+                <h4>Highest Expense</h4>
+                <p>ETB 0.00</p>
+            </div>
+        </section>
+
+        <!-- Category Breakdown -->
+        <section>
+            <h3>Expenses by Category</h3>
+
+            <ul>
+                <li>Food: ETB 0.00</li>
+                <li>Transportation: ETB 0.00</li>
+                <li>Education materials: ETB 0.00</li>
+                <li>Snacks and Drinks: ETB 0.00</li>
+                <li>Healthcare: ETB 0.00</li>
+                <li>Entertainment: ETB 0.00</li>
+                <li>Shopping: ETB 0.00</li>
+                <li>Other: ETB 0.00</li>
+
+            </ul>
+        </section>
+
+        <!-- Expense Management Instructions -->
+        <section>
+
+            <h4>Important Information</h4>
+
+            <p>
+                Every expense should have a description, amount,
+                category, and date. These records will help
+                SpendSense analyze spending patterns and support
+                future budgeting and financial predictions.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 SpendSense. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
